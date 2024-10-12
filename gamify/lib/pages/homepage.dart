@@ -35,7 +35,7 @@ class _HomepageState extends State<Homepage> {
 
   Widget _featuredGamesWidget() {
     return SizedBox(
-        height: deviceHeight * 0.5,
+        height: deviceHeight * 0.46,
         width: deviceWidth,
         child: PageView(
           onPageChanged: (index) {
@@ -88,7 +88,13 @@ class _HomepageState extends State<Homepage> {
             height: deviceHeight * 0.13,
           ),
           _featuredGameInfoWidget(),
-          Scrollablegameswidget(deviceHeight, deviceWidth, true, games),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: deviceHeight * 0.01),
+            child: Scrollablegameswidget(
+                deviceHeight * 0.26, deviceWidth, true, games),
+          ),
+          _featuredGamesBannerWidget(),
+          Scrollablegameswidget(deviceHeight * 0.2, deviceWidth, false, games),
         ],
       ),
     );
@@ -157,6 +163,18 @@ class _HomepageState extends State<Homepage> {
           )
         ],
       ),
+    );
+  }
+
+  Widget _featuredGamesBannerWidget() {
+    return Container(
+      height: deviceHeight * 0.13,
+      width: deviceWidth,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5),
+          image: DecorationImage(
+              fit: BoxFit.cover,
+              image: NetworkImage(featuredGames[3].coverImage.url))),
     );
   }
 }
